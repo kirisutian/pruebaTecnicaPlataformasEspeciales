@@ -1,0 +1,57 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title mb-3">Cancelar transacción</h5>
+
+    <form [formGroup]="form" (ngSubmit)="cancelar()">
+
+      <div class="mb-3">
+        <label class="form-label">ID</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="id"
+        >
+        <div
+          class="text-danger small"
+          *ngIf="form.get('id')?.touched && form.get('id')?.invalid"
+        >
+          El ID es obligatorio
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Referencia</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="referencia"
+        >
+        <div
+          class="text-danger small"
+          *ngIf="form.get('referencia')?.touched && form.get('referencia')?.invalid"
+        >
+          La referencia es obligatoria
+        </div>
+      </div>
+
+      <button
+        class="btn btn-danger w-100"
+        type="submit"
+        [disabled]="cargando || form.invalid"
+      >
+        <span *ngIf="!cargando">Cancelar</span>
+        <span *ngIf="cargando">Cancelando...</span>
+      </button>
+
+    </form>
+
+    <div *ngIf="mensajeExito" class="alert alert-success mt-3">
+      {{ mensajeExito }}
+    </div>
+
+    <div *ngIf="mensajeError" class="alert alert-danger mt-3">
+      {{ mensajeError }}
+    </div>
+
+  </div>
+</div>

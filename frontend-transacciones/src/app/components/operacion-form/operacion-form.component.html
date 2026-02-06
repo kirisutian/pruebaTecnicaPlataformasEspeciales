@@ -1,0 +1,64 @@
+<div class="container mt-4">
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Registrar operación</h5>
+    </div>
+
+    <div class="card-body">
+
+      <form [formGroup]="form" (ngSubmit)="enviar()">
+
+        <div class="mb-3">
+          <label class="form-label">Operación</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="operacion"
+            placeholder="venta">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Importe</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="importe"
+            placeholder="100.00">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Cliente</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="cliente"
+            placeholder="Carlos">
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="form.invalid">
+          Enviar
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Respuesta exitosa -->
+  <div *ngIf="respuesta" class="alert alert-success mt-4">
+    <h6 class="alert-heading">Resultado</h6>
+    <p class="mb-1"><strong>ID:</strong> {{ respuesta.id }}</p>
+    <p class="mb-1"><strong>Referencia:</strong> {{ respuesta.referencia }}</p>
+    <p class="mb-1"><strong>Estatus:</strong> {{ respuesta.estatus }}</p>
+    <p class="mb-0"><strong>Operación:</strong> {{ respuesta.operacion }}</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="alert alert-danger mt-4">
+    {{ error }}
+  </div>
+
+</div>
